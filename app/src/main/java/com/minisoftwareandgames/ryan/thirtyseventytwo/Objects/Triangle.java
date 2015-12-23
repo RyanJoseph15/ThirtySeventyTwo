@@ -1,5 +1,7 @@
 package com.minisoftwareandgames.ryan.thirtyseventytwo.Objects;
 
+import android.util.Log;
+
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
@@ -11,15 +13,15 @@ import javax.microedition.khronos.opengles.GL10;
  */
 public class Triangle extends mShape {
 
-    private final FloatBuffer vertexBuffer;
+    private FloatBuffer vertexBuffer;
 
     // number of coordinates per vertex in this array
     static final int COORDS_PER_VERTEX = 3;
-    static float triangleCoords[] = {
+    private float triangleCoords[] = {
             // in counterclockwise order:
-            0.0f,  0.622008459f, 0.0f,// top
-            -0.5f, -0.311004243f, 0.0f,// bottom left
-            0.5f, -0.311004243f, 0.0f // bottom right
+            0.0f,  0.622f, 0.0f,// top
+            -0.5f, -0.311f, 0.0f,// bottom left
+            0.5f, -0.311f, 0.0f // bottom right
     };
 
     float color[] = { 0.63671875f, 0.76953125f, 0.22265625f, 0.0f };
@@ -28,6 +30,15 @@ public class Triangle extends mShape {
      * Sets up the drawing object data for use in an OpenGL ES context.
      */
     public Triangle() {
+        setUp();
+    }
+
+    public Triangle(float xCoor, float yCoor, float zCoor) {
+        adjustCoordinates(xCoor, yCoor, zCoor);
+        setUp();
+    }
+
+    private void setUp() {
         // initialize vertex byte buffer for shape coordinates
         ByteBuffer bb = ByteBuffer.allocateDirect(
                 // (number of coordinate values * 4 bytes per float)
@@ -41,6 +52,32 @@ public class Triangle extends mShape {
         vertexBuffer.put(triangleCoords);
         // set the buffer to read the first coordinate
         vertexBuffer.position(0);
+    }
+
+    public void adjustCoordinates(float xCoor, float yCoor, float zCoor) {
+        int length = triangleCoords.length;
+        for (int index = 0; index < length; index++) {
+            if (index % 3 == 0) {
+                triangleCoords[index] += xCoor;
+            } else if (index % 3 == 1) {
+                triangleCoords[index] += yCoor;
+            } else if (index % 3 == 2) {
+                triangleCoords[index] += zCoor;
+            }
+        }
+        setUp();
+    }
+
+    private void LogCoords() {
+        int length = triangleCoords.length;
+        Log.d("LogCoords", " below ");
+        for (int index = 0; index < length; index++) {
+            if (index % 3 == 2) Log.d("LogCoords", "" +
+                            triangleCoords[index - 2] + ", " +
+                            triangleCoords[index - 1] + ", " +
+                            triangleCoords[index]
+            );
+        }
     }
 
     /**

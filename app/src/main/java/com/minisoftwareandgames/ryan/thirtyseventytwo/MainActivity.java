@@ -1,13 +1,12 @@
 package com.minisoftwareandgames.ryan.thirtyseventytwo;
 
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.minisoftwareandgames.ryan.thirtyseventytwo.Fragments.SquareGame;
+import com.minisoftwareandgames.ryan.thirtyseventytwo.Fragments.TriangleGame;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().add(new SquareGame(), "SQUARE").commit();
+        fragmentManager.beginTransaction().add(new TriangleGame(), "TRIANGLE").commit();
     }
 
     @Override

@@ -1,12 +1,8 @@
 package com.minisoftwareandgames.ryan.thirtyseventytwo.Fragments;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
-import com.minisoftwareandgames.ryan.thirtyseventytwo.Objects.Square;
 import com.minisoftwareandgames.ryan.thirtyseventytwo.Objects.mShape;
 
 import java.util.ArrayList;
@@ -29,8 +25,6 @@ public abstract class GameFragment extends Fragment {
 
     protected void setupGrid(GameFragment gameFragment, View view) {
         if (gameFragment instanceof HexagonalGame) {
-            
-        } else if (gameFragment instanceof PentagonalGame) {
 
         } else if (gameFragment instanceof SquareGame) {
 
