@@ -19,9 +19,9 @@ public class Triangle extends mShape {
     static final int COORDS_PER_VERTEX = 3;
     private float triangleCoords[] = {
             // in counterclockwise order:
-            0.0f,  0.622f, 0.0f,// top
-            -0.5f, -0.311f, 0.0f,// bottom left
-            0.5f, -0.311f, 0.0f // bottom right
+            0.0f,  0.1866f, 0.0f,// top
+            -0.15f, -0.0933f, 0.0f,// bottom left
+            0.15f, -0.0933f, 0.0f // bottom right
     };
 
     float color[] = { 0.63671875f, 0.76953125f, 0.22265625f, 0.0f };
@@ -66,6 +66,16 @@ public class Triangle extends mShape {
             }
         }
         setUp();
+    }
+
+    public void invert() {
+        int length = triangleCoords.length;
+        for (int index = 0; index < length; index++) {
+            if (index % 3 == 1) {
+                // inverts the y axis
+                triangleCoords[index] = 0 - triangleCoords[index];
+            }
+        }
     }
 
     private void LogCoords() {
